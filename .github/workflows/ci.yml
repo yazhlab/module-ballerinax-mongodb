@@ -51,6 +51,14 @@ jobs:
                 WORKING_DIR: ./mongodb
                 MONGODB_HOST: mongodb-ssl
                 MONGODB_USER: C=US,ST=CA,L=San Francisco,O=Jaspersoft,OU=JSDev,CN=admin
+            - name: Ballerina Build for Push
+              uses: ballerina-platform/ballerina-action/@swan-lake-connector-release
+              with:
+                args:
+                  build --skip-tests -c mongodb
+              env:
+                JAVA_HOME: /usr/lib/jvm/default-jvm
+                JAVA_OPTS: -DBALLERINA_DEV_COMPILE_BALLERINA_ORG=true
             - name: Ballerina Push
               uses: ballerina-platform/ballerina-action/@swan-lake-connector-release
               with:
